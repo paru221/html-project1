@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>SSS Flowers - Payment</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#fff7f7;
+}
+
+.payment-box{
+width:420px;
+margin:auto;
+margin-top:80px;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+text-align:center;
+}
+
+input,textarea{
+width:85%;
+padding:10px;
+margin:8px;
+border-radius:5px;
+border:1px solid gray;
+}
+
+.btn{
+background:#d6336c;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:5px;
+cursor:pointer;
+margin:5px;
+}
+
+.btn:hover{
+background:#ff6b9a;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="payment-box">
+
+<h2>Select Payment</h2>
+
+<p>Choose your payment method:</p>
+
+<button class="btn" onclick="cod()">Cash On Delivery</button>
+
+<button class="btn" onclick="online()">PhonePe / GPay / Paytm</button>
+
+<!-- COD SECTION -->
+
+<div id="codSection" style="display:none;">
+
+<h3>Enter Delivery Address</h3>
+
+<textarea id="address" placeholder="Enter Full Address with PIN Code"></textarea><br>
+
+<button class="btn" onclick="validateAddress()">Place Order</button>
+
+</div>
+
+<!-- ONLINE PAYMENT -->
+
+<div id="onlineSection" style="display:none;">
+
+<h3>Enter Phone & UPI Details</h3>
+
+<input type="text" id="phone" placeholder="Phone Number"><br>
+
+<input type="text" id="upi" placeholder="UPI ID (example: name@upi)"><br>
+
+<button class="btn" onclick="validateOnline()">Pay & Place Order</button>
+
+</div>
+
+</div>
+
+<script>
+
+function cod(){
+document.getElementById('codSection').style.display='block';
+document.getElementById('onlineSection').style.display='none';
+}
+
+function online(){
+document.getElementById('onlineSection').style.display='block';
+document.getElementById('codSection').style.display='none';
+}
+
+/* ADDRESS VALIDATION */
+
+function validateAddress(){
+
+let address=document.getElementById("address").value.toLowerCase();
+
+/* Indian pincode check */
+
+let pinRegex=/\b\d{6}\b/;
+
+/* International places allowed */
+
+let abroad=["usa","united states","london","paris","uk","france"];
+
+let indiaValid=pinRegex.test(address);
+
+let abroadValid=abroad.some(place=>address.includes(place));
+
+if(address.trim()==""){
+alert("❌ Please enter your delivery address");
+return;
+}
+
+if(indiaValid || abroadValid){
+orderSuccess();
+}
+
+else{
+alert("❌ Please enter a valid address with Indian PIN code or valid international location.");
+}
+
+}
+
+/* ONLINE PAYMENT VALIDATION */
+
+function validateOnline(){
+
+let phone=document.getElementById("phone").value;
+
+let upi=document.getElementById("upi").value;
+
+/* Phone validation */
+
+let phoneRegex=/^[6-9]\d{9}$/;
+
+/* UPI validation */
+
+let upiRegex=/^[\w.-]+@[\w]+$/;
+
+if(!phoneRegex.test(phone)){
+alert("❌ Enter valid 10 digit phone number");
+return;
+}
+
+if(!upiRegex.test(upi)){
+alert("❌ Enter valid UPI ID (example: name@upi)");
+return;
+}
+
+orderSuccess();
+
+}
+
+/* SUCCESS */
+
+function orderSuccess(){
+
+alert("✅ Your Order is Successfully Placed!");
+
+window.location.href='success.html';
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SSS Flowers - Home</title>
+
+<style>
+body{font-family:Arial; margin:0; background:#fff7f7;}
+header{background:#d6336c;color:white;padding:15px;}
+nav{display:flex;justify-content:space-between;align-items:center;}
+nav a{color:white;margin:10px;text-decoration:none;padding:8px 14px;border-radius:6px;}
+nav a:hover{background:white;color:#d6336c;}
+
+/* 4 flowers per row (desktop) */
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+.card img{
+width:100%;
+height:170px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.price{color:#d6336c;font-weight:bold;}
+
+.btn{
+background:#d6336c;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+margin:5px;
+}
+
+.btn:hover{background:#ff6b9a;}
+
+.cart{background:#ffe5ec;padding:20px;}
+
+footer{
+background:#d6336c;
+color:white;
+text-align:center;
+padding:10px;
+}
+
+.review{
+background:#ffe5ec;
+padding:15px;
+margin:10px;
+border-radius:10px;
+}
+
+#searchBar{
+width:50%;
+padding:10px;
+margin:20px auto;
+display:block;
+border-radius:5px;
+border:1px solid gray;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<nav>
+<h2>SSS Flowers</h2>
+<div>
+<a href="home.html">Home</a>
+<a href="about.html">About Us</a>
+<a href="learn.html">Learn More</a>
+<a href="contact.html">Contact</a>
+</div>
+<div>🛒 <span id="cartCount">0</span></div>
+</nav>
+</header>
+
+<h1 style="text-align:center;">🌸 Welcome to SSS Flowers</h1>
+
+<!-- Search Bar -->
+<input type="text" id="searchBar" placeholder="Search flowers..." onkeyup="searchFlowers()">
+
+<div class="products" id="productGrid">
+
+<!-- Red Roses -->
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTlZVbok-4mACwdiAAsl7x6EpDG2qRKAH0Sw&s">
+<h3>Red Roses</h3>
+<p>₹200</p>
+<button class="btn" onclick="minus(200,'q1')">−</button>
+<span id="q1">0</span>
+<button class="btn" onclick="plus(200,'q1')">+</button>
+<p>Love and romance, best for anniversaries.</p>
+</div>
+
+<!-- Lotus -->
+<div class="card">
+<img src="https://media-cdn.tripadvisor.com/media/photo-s/12/48/f2/1f/bouquet-of-lotus-flower.jpg">
+<h3>Lotus</h3>
+<p>₹250</p>
+<button class="btn" onclick="minus(250,'q2')">−</button>
+<span id="q2">0</span>
+<button class="btn" onclick="plus(250,'q2')">+</button>
+<p>Sacred flower, symbolizes purity.</p>
+</div>
+
+<!-- Tulips -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1468327768560-75b778cbb551">
+<h3>Tulips</h3>
+<p>₹280</p>
+<button class="btn" onclick="minus(280,'q3')">−</button>
+<span id="q3">0</span>
+<button class="btn" onclick="plus(280,'q3')">+</button>
+<p>Colorful spring flowers, cheerful gift.</p>
+</div>
+
+<!-- Sunflower -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1470509037663-253afd7f0f51">
+<h3>Sunflower</h3>
+<p>₹100</p>
+<button class="btn" onclick="minus(100,'q4')">−</button>
+<span id="q4">0</span>
+<button class="btn" onclick="plus(100,'q4')">+</button>
+<p>Bright happiness flower, symbol of positivity.</p>
+</div>
+
+<!-- Orchids -->
+<div class="card">
+<img src="https://shadesofspring.in/cdn/shop/products/DSC06046_1080x.jpg">
+<h3>Orchids</h3>
+<p>₹300</p>
+<button class="btn" onclick="minus(300,'q5')">−</button>
+<span id="q5">0</span>
+<button class="btn" onclick="plus(300,'q5')">+</button>
+<p>One of the most diverse plant families.</p>
+</div>
+
+<!-- Orange Tulips -->
+<div class="card">
+<img src="https://www.whiteflowerfarm.com/mas_assets/cache/image/9/4/e/9/38121.Jpg">
+<h3>Orange Tulips</h3>
+<p>₹500</p>
+<button class="btn" onclick="minus(500,'q6')">−</button>
+<span id="q6">0</span>
+<button class="btn" onclick="plus(500,'q6')">+</button>
+<p>Orange tulips convey warm happiness.</p>
+</div>
+
+<!-- Blue Roses -->
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6wBQKH7i4J5rJTpuVRvCF9oGrAC3_kC5ToA&s">
+<h3>Blue Roses</h3>
+<p>₹220</p>
+<button class="btn" onclick="minus(220,'q7')">−</button>
+<span id="q7">0</span>
+<button class="btn" onclick="plus(220,'q7')">+</button>
+<p>Blue roses symbolize mystery and uniqueness.</p>
+</div>
+
+<!-- Bouquet -->
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAw0E77vz_pWV9d3r8H0w8wbUjgDMacyeQBA&s">
+<h3>Flower Bouquet</h3>
+<p>₹1000</p>
+<button class="btn" onclick="minus(1000,'q8')">−</button>
+<span id="q8">0</span>
+<button class="btn" onclick="plus(1000,'q8')">+</button>
+<p>Wide variety of flowers for special occasions.</p>
+</div>
+
+</div>
+
+<div class="cart">
+<h3>Cart Summary</h3>
+<p>Total Items: <span id="items">0</span></p>
+<p>Total Price: ₹<span id="total">0</span></p>
+<a href="payment.html"><button class="btn">Proceed to Payment</button></a>
+</div>
+
+<h2 style="text-align:center;">Customer Reviews</h2>
+<div class="review">
+<h3>Paru ⭐⭐⭐⭐⭐</h3>
+<p>Lotus flowers were fresh and beautiful.</p>
+</div>
+<div class="review">
+<h3>Satya ⭐⭐⭐⭐⭐</h3>
+<p>Ordered roses, delivery was fast and bouquet was gorgeous.</p>
+</div>
+<div class="review">
+<h3>Valli ⭐⭐⭐⭐⭐</h3>
+<p>The tulips made my friend’s birthday extra special!</p>
+</div>
+
+<footer>© 2026 SSS Flowers</footer>
+
+<script>
+let items=0,total=0;
+
+function plus(price,id){
+items++;
+total+=price;
+document.getElementById("items").innerText=items;
+document.getElementById("total").innerText=total;
+document.getElementById("cartCount").innerText=items;
+let q=document.getElementById(id);
+q.innerText=parseInt(q.innerText)+1;
+}
+
+function minus(price,id){
+let q=document.getElementById(id);
+if(parseInt(q.innerText)>0){
+items--;
+total-=price;
+document.getElementById("items").innerText=items;
+document.getElementById("total").innerText=total;
+document.getElementById("cartCount").innerText=items;
+q.innerText=parseInt(q.innerText)-1;
+}
+}
+
+// Search functionality
+function searchFlowers(){
+let input=document.getElementById("searchBar").value.toLowerCase();
+let cards=document.querySelectorAll(".products .card");
+cards.forEach(card=>{
+let name=card.querySelector("h3").innerText.toLowerCase();
+card.style.display=name.includes(input) ? "block" : "none";
+});
+}
+</script>
+
+</body>
+</html>
